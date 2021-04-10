@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Product\ProductResource;
 use App\Models\models\product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return Product::all();
     }
 
     /**
@@ -44,9 +45,9 @@ class ProductController extends Controller
      * @param  \App\Models\models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(product $product)
+    public function show($product)
     {
-        //
+        return new ProductResource(Product::findOrFail($product));
     }
 
     /**
