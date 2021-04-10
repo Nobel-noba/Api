@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Product\Productcollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\models\product;
 use Illuminate\Http\Request;
@@ -15,7 +16,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+//        this will paginate the information but we cant manipulat it as given in the show method
+      /**  return ProductResource::collection(Product::all()); */
+//        due to this we will change teh extention of ProductCollection and we can manipulate the data shown
+        return Productcollection::collection(Product::all());
+
+//        return Product::all();
     }
 
     /**
@@ -47,6 +53,8 @@ class ProductController extends Controller
      */
     public function show($product)
     {
+
+
         return new ProductResource(Product::findOrFail($product));
     }
 
