@@ -6,6 +6,7 @@ use App\Http\Resources\Product\Productcollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\models\product;
 use Illuminate\Http\Request;
+use function GuzzleHttp\Promise\all;
 
 class ProductController extends Controller
 {
@@ -53,8 +54,6 @@ class ProductController extends Controller
      */
     public function show($product)
     {
-
-
         return new ProductResource(Product::findOrFail($product));
     }
 

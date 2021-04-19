@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReviewResource;
 use App\Models\models\Review;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        return Review::all();
     }
 
     /**
@@ -44,9 +45,9 @@ class ReviewController extends Controller
      * @param  \App\Models\models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show($review)
     {
-        //
+        return ReviewResource(Review::findOrFail($review));
     }
 
     /**
